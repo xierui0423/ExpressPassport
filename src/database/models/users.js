@@ -18,6 +18,6 @@ module.exports = function (sequelize, DataTypes) {
     },
   }, {
     tableName: 'users',
-    timestamps: false
+    timestamps: false,
   });
 };
