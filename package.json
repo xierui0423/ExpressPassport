@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --require ./test/helper/test_helper.js \"test/**/*.js\"",
+    "test": "mocha --compilers js:babel-core/register --require ./src/test/helper/test_helper.js \"src/test/**/*.js\"",
     "test:watch": "npm run test -- --watch",
-    "start": "babel-node ./src/index.js"
+    "start": "babel-node ./src/server.js"
   },
   "repository": {
     "type": "git",
