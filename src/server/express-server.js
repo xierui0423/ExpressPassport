@@ -7,26 +7,36 @@ import path from 'path';
 import exphab from 'express-handlebars';
 import bodyParser from 'body-parser';
 
-import authHandler from './authentication-handler';
-import config from '../config/config';
+import passport from '../auth/passport';
+import errorHandler from './error-handler';
+
+import router from '../routes';
+
+import config from '../config/index';
 
 export default () => {
   const app = express();
 
-  app.use(authHandler);
+  // Middlewares
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
+  app.use(passport.initialize());
+  app.use(errorHandler);
 
+  // Routes
+  app.use('/', router);
+
+  // View engine
   app.engine('.hbs', exphab({
     defaultLayour: 'main',
     extname: '.hbs',
-    layoutDir: path.join(__dirname, 'views/layouts'),
+    layoutDir: path.join(__dirname, '../views/layouts'),
   }));
 
   app.set('view engine', '.hbs');
-  app.set('views', path.join(__dirname, 'views'));
+  app.set('views', path.join(__dirname, '../views'));
 
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
-
+  // Start the server and listen on specified port
   app.listen(config.expressServer.port, (err) => {
     if (err) {
       return console.log(`something went wrong:${err}`);

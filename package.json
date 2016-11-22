@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ./src/test/helper/test_helper.js \"src/test/**/*.js\"",
     "test:watch": "npm run test -- --watch",
-    "start": "babel-node ./src/server.js"
+    "start": "babel-node ./src/app.js --source-maps"
   },
   "repository": {
     "type": "git",

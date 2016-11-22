@@ -1,19 +1,19 @@
 /**
- * Created by ray.xie on 11/18/2016.
+ * Created by ray.xie on 11/22/2016.
  */
 
-import passport from 'passport';
-import jwt from 'jsonwebtoken';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
+import config from '../../config';
+// import db from '../database/database';
+// const User = db.import('./database/models/users');
 
-
-const SECRET_KEY = 'secret';
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
-opts.secretOrKey = SECRET_KEY;
+opts.secretOrKey = config.expressServer.authKey;
 // opts.issuer = 'accounts.examplesoft.com';
 // opts.audience = 'yoursite.net';
-passport.use(new JwtStrategy(opts, (payload, done) => {
+
+export default new JwtStrategy(opts, (payload, done) => {
   // User.findOne({ id: jwt_payload.sub }, (err, user) => {
   //   if (err) {
   //     return done(err, false);
@@ -25,7 +25,4 @@ passport.use(new JwtStrategy(opts, (payload, done) => {
     // or you could create a new account
   }
   // });
-}));
-
-
-export default passport.initialize();
+});
