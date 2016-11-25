@@ -21,10 +21,12 @@ export default () => {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(passport.initialize());
-  app.use(errorHandler);
 
   // Routes
   app.use('/', router);
+
+  // Error handling
+  app.use(errorHandler);
 
   // View engine
   app.engine('.hbs', exphab({

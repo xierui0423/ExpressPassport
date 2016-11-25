@@ -14,7 +14,7 @@ opts.secretOrKey = config.expressServer.authKey;
 // opts.audience = 'yoursite.net';
 
 export default new JwtStrategy(opts, (payload, done) => {
-  // User.findOne({ id: jwt_payload.sub }, (err, user) => {
+  // User.findOne({ id: jwt_payload.sub }, (err, account) => {
   //   if (err) {
   //     return done(err, false);
   //   }

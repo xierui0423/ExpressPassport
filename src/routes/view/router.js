@@ -11,7 +11,7 @@ import jwt from 'jsonwebtoken';
 
 import config from '../../config';
 
-// const User = db.import('../../database/models/user/users');
+// const User = db.import('../../database/models/account/users');
 
 // eslint-disable-next-line
 const router = express.Router();
