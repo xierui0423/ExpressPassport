@@ -21,18 +21,12 @@ userService.register = (req, rsp, next) => {
     age: user.age,
     password: hash.update(salt).update(user.password).digest('hex'),
     salt,
-  }).then(() => { rsp.sendStatus(200); }).catch(next);
+  }).then(() => { rsp.send(`User ${user.name} has been created!`); }).catch(next);
 };
 
 userService.retrieve = (req, res, next) => {
   User.findOne({ order: [['id', 'DESC']] }).then((user) => {
-    if (user) {
-      res.render('home', {
-        name: user.get('name'),
-      });
-    } else {
-      res.send('No users are available');
-    }
+    res.json(user || []);
   }).catch(next);
 };
 
