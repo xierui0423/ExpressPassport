@@ -24,7 +24,7 @@ userService.register = (req, rsp, next) => {
   }).then(() => { rsp.sendStatus(200); }).catch(next);
 };
 
-userService.retrieve = (req, res) => {
+userService.retrieve = (req, res, next) => {
   User.findOne({ order: [['id', 'DESC']] }).then((user) => {
     if (user) {
       res.render('home', {
