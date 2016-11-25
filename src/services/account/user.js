@@ -19,7 +19,7 @@ userService.register = (req, rsp, next) => {
   User.create({
     name: user.name,
     age: user.age,
-    password: hash.update(salt).update(user.password).digest(),
+    password: hash.update(salt).update(user.password).digest('hex'),
     salt,
   }).then(() => { rsp.sendStatus(200); }).catch(next);
 };
