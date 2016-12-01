@@ -4,25 +4,21 @@
 
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import config from '../../config';
-// import db from '../database/database';
-// const User = db.import('./database/models/users');
+import { models } from '../../database';
 
-const opts = {};
-opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
-opts.secretOrKey = config.expressServer.authKey;
+const User = models.user.User;
+
+const opts = {
+  jwtFromRequest: ExtractJwt.fromAuthHeader(),
+  secretOrKey: config.expressServer.authKey,
+  passReqToCallback: true,
+};
 // opts.issuer = 'accounts.examplesoft.com';
 // opts.audience = 'yoursite.net';
 
-export default new JwtStrategy(opts, (payload, done) => {
-  // User.findOne({ id: jwt_payload.sub }, (err, account) => {
-  //   if (err) {
-  //     return done(err, false);
-  //   }
-  if (payload.key) {
-    done(null, payload.key);
-  } else {
-    done(null, false);
-    // or you could create a new account
-  }
-  // });
+export default new JwtStrategy(opts, (req, payload, done) => {
+  // TODO Get user info from in memory cache (redis?)
+  User.findOne({ where: { id: payload.userId } }).then((loginUser) => {
+    done(null, loginUser);
+  }).catch(done);
 });

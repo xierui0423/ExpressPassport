@@ -9,3 +9,5 @@ passport.use(jwtStratedy);
 
 export default passport;
 
+export const authHandler = [passport.authenticate('jwt', { session: false })];
+

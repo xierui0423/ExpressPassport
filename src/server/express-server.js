@@ -7,7 +7,7 @@ import path from 'path';
 import exphab from 'express-handlebars';
 import bodyParser from 'body-parser';
 
-import passport from '../auth/passport';
+import passport from '../auth/auth';
 import errorHandler from './error-handler';
 
 import router from '../routes';

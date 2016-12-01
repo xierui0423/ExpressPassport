@@ -4,11 +4,11 @@
 
 import express from 'express';
 import accountRouter from './account';
-import passport from '../../../auth';
+import { authHandler } from '../../../auth';
 
 const router = express.Router();
 
-router.use('/', passport.authenticate('jwt', { session: false }));
+router.use('/', authHandler);
 router.use('/account', accountRouter);
 
 export default router;
