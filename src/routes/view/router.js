@@ -19,15 +19,19 @@ const router = express.Router();
 // router.use('/', passport.authenticate('jwt', { session: false }));
 
 router.get('/login', (req, rsp) => {
-  rsp.json(jwt.sign({ foo: 'bar', key: 'keykey' }, config.expressServer.authKey));
+    rsp.json(jwt.sign({ foo: 'bar', key: 'keykey' }, config.expressServer.authKey));
 });
 
 router.get('/test', (req, rsp) => {
-  rp({
-    uri: 'https://blog.risingstack.com/node-hero-node-js-request-module-tutorial/',
-  }).then((val) => {
-    rsp.send(val);
-  });
+    // rp({
+    //   uri: 'https://blog.risingstack.com/node-hero-node-js-request-module-tutorial/',
+    // }).then((val) => {
+    //   rsp.send(val);
+    // });
+    setTimeout(() => {
+        rsp.json({ id: 1 });
+    }, 5000);
+
 });
 
 export default router;

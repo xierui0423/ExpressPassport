@@ -15,38 +15,58 @@ import router from '../routes';
 import config from '../config/index';
 
 export default () => {
-  const app = express();
+    const app = express();
 
-  // Middlewares
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
-  app.use(passport.initialize());
+    // Middlewares
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.json());
+    app.use(passport.initialize());
 
-  // Routes
-  app.use('/', router);
+    // Add headers for CORS
+    app.use(function (req, res, next) {
 
-  // Error handling
-  app.use(errorHandler);
+        // Website you wish to allow to connect
+        res.setHeader('Access-Control-Allow-Origin', '*');
 
-  // View engine
-  app.engine('.hbs', exphab({
-    defaultLayour: 'main',
-    extname: '.hbs',
-    layoutDir: path.join(__dirname, '../views/layouts'),
-  }));
+        // Request methods you wish to allow
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-  app.set('view engine', '.hbs');
-  app.set('views', path.join(__dirname, '../views'));
+        // Request headers you wish to allow
+        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-  // Start the server and listen on specified port
-  app.listen(config.expressServer.port, (err) => {
-    if (err) {
-      return console.log(`something went wrong:${err}`);
-    }
+        // Set to true if you need the website to include cookies in the requests sent
+        // to the API (e.g. in case you use sessions)
+        res.setHeader('Access-Control-Allow-Credentials', true);
 
-    return console.log(`server is listening on port ${config.expressServer.port}`);
-  });
+        // Pass to next layer of middleware
+        next();
+    });
 
-  return app;
+    // Routes
+    app.use('/', router);
+
+    // Error handling
+    app.use(errorHandler);
+
+    // View engine
+    app.engine('.hbs', exphab({
+        defaultLayour: 'main',
+        extname: '.hbs',
+        layoutDir: path.join(__dirname, '../views/layouts'),
+    }));
+
+    app.set('view engine', '.hbs');
+    app.set('views', path.join(__dirname, '../views'));
+
+    // Start the server and listen on specified port
+    app.listen(config.expressServer.port, (err) => {
+        if (err) {
+            return console.log(`something went wrong:${err}`);
+        }
+
+        return console.log(`server is listening on port ${config.expressServer.port}`);
+    });
+
+    return app;
 };
 

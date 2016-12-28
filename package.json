@@ -1,95 +1,104 @@
 {
-  "name": "ExpressPassport",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha --compilers js:babel-core/register --require ./src/test/helper/test_helper.js \"src/test/**/*.js\"",
-    "test:watch": "npm run test -- --watch",
-    "start": "babel-node ./src/app.js --source-maps",
-    "generate-model": "babel-node ./src/scripts/generate-database-models",
-    "clean": "rm -rf build && mkdir build",
-    "build-server": "babel -d ./build ./src -s",
-    "build": "npm run clean && npm run build-server",
-    "debug": "node --debug ./build/app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xierui0423/ExpressPassport.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/xierui0423/ExpressPassport/issues"
-  },
-  "homepage": "https://github.com/xierui0423/ExpressPassport#readme",
-  "devDependencies": {
-    "babel-cli": "^6.14.0",
-    "babel-core": "^6.14.0",
-    "babel-preset-es2015": "^6.14.0",
-    "chai": "^3.5.0",
-    "eslint": "^3.4.0",
-    "eslint-config-airbnb": "^11.0.0",
-    "eslint-plugin-import": "^1.14.0",
-    "eslint-plugin-jsx-a11y": "^2.2.1",
-    "eslint-plugin-react": "^6.2.0",
-    "mocha": "^3.0.2",
-    "sequelize-auto": "^0.4.17"
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
-  },
-  "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "express-handlebars": "^3.0.0",
-    "jsonwebtoken": "^7.1.9",
-    "node-uuid": "^1.4.7",
-    "passport": "^0.3.2",
-    "passport-jwt": "^2.2.1",
-    "pg": "^6.1.0",
-    "pg-hstore": "^2.3.2",
-    "request": "^2.78.0",
-    "request-promise": "^4.1.1",
-    "sequelize": "^3.25.0"
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "node": true
+    "name": "ExpressPassport",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha --compilers js:babel-core/register --require ./src/test/helper/test_helper.js \"src/test/**/*.js\"",
+        "test:watch": "npm run test -- --watch",
+        "start": "babel-node ./src/app.js --source-maps",
+        "generate-model": "babel-node ./src/scripts/generate-database-models",
+        "clean": "rm -rf build && mkdir build",
+        "build-server": "babel -d ./build ./src -s",
+        "build": "npm run clean && npm run build-server",
+        "debug": "node --debug ./build/app.js"
     },
-    "extends": [
-      "airbnb"
-    ],
-    "rules": {
-      "new-cap": [
-        2,
-        {
-          "capIsNewExceptions": [
-            "Map",
-            "List"
-          ]
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/xierui0423/ExpressPassport.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/xierui0423/ExpressPassport/issues"
+    },
+    "homepage": "https://github.com/xierui0423/ExpressPassport#readme",
+    "devDependencies": {
+        "babel-cli": "^6.14.0",
+        "babel-core": "^6.14.0",
+        "babel-preset-es2015": "^6.14.0",
+        "chai": "^3.5.0",
+        "eslint": "^3.4.0",
+        "eslint-config-airbnb": "^11.0.0",
+        "eslint-plugin-import": "^1.14.0",
+        "eslint-plugin-jsx-a11y": "^2.2.1",
+        "eslint-plugin-react": "^6.2.0",
+        "mocha": "^3.0.2",
+        "sequelize-auto": "^0.4.17"
+    },
+    "babel": {
+        "presets": [
+            "es2015"
+        ]
+    },
+    "dependencies": {
+        "body-parser": "^1.15.2",
+        "express": "^4.14.0",
+        "express-handlebars": "^3.0.0",
+        "jsonwebtoken": "^7.1.9",
+        "node-uuid": "^1.4.7",
+        "passport": "^0.3.2",
+        "passport-jwt": "^2.2.1",
+        "pg": "^6.1.0",
+        "pg-hstore": "^2.3.2",
+        "request": "^2.78.0",
+        "request-promise": "^4.1.1",
+        "sequelize": "^3.25.0"
+    },
+    "eslintConfig": {
+        "env": {
+            "browser": true,
+            "node": true
+        },
+        "extends": [
+            "airbnb"
+        ],
+        "rules": {
+            "indent": [
+                2,
+                4,
+                {
+                    "SwitchCase": 1
+                }
+            ],
+            "react/jsx-indent": [
+                2,
+                4
+            ],
+            "new-cap": [
+                2,
+                {
+                    "capIsNewExceptions": [
+                        "Map",
+                        "List"
+                    ]
+                }
+            ],
+            "linebreak-style": [
+                2,
+                "windows"
+            ],
+            "react/no-unused-prop-types": [
+                0
+            ],
+            "react/jsx-indent-props": [
+                2,
+                4
+            ],
+            "import/prefer-default-export": [
+                0
+            ]
         }
-      ],
-      "linebreak-style": [
-        2,
-        "windows"
-      ],
-      "no-param-reassign": [
-        0
-      ],
-      "import/prefer-default-export": [
-        0
-      ],
-      "import/no-extraneous-dependencies": [
-        0
-      ],
-      "new-cap": [
-        0
-      ]
     }
-  }
 }
