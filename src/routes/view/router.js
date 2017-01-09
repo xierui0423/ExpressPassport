@@ -5,6 +5,8 @@
 import express from 'express';
 import rp from 'request-promise';
 import jwt from 'jsonwebtoken';
+import { authHandler } from '../../auth';
+
 
 // import db from '../../database';
 // import passport from '../../auth';
@@ -15,6 +17,8 @@ import config from '../../config';
 
 // eslint-disable-next-line
 const router = express.Router();
+
+router.use('/', authHandler);
 
 // router.use('/', passport.authenticate('jwt', { session: false }));
 
@@ -30,7 +34,7 @@ router.get('/test', (req, rsp) => {
     // });
     setTimeout(() => {
         rsp.json({ id: 1 });
-    }, 5000);
+    }, 0);
 
 });
 

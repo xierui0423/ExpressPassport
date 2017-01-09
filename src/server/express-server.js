@@ -6,6 +6,7 @@ import express from 'express';
 import path from 'path';
 import exphab from 'express-handlebars';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 
 import passport from '../auth/auth';
 import errorHandler from './error-handler';
@@ -20,13 +21,14 @@ export default () => {
     // Middlewares
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
+    app.use(cookieParser());
     app.use(passport.initialize());
 
     // Add headers for CORS
     app.use(function (req, res, next) {
 
         // Website you wish to allow to connect
-        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
 
         // Request methods you wish to allow
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
