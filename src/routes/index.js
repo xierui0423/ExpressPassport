@@ -1,6 +1,3 @@
-/**
- * Created by ray.xie on 11/18/2016.
- */
 import express from 'express';
 
 import apiRouter from './api';

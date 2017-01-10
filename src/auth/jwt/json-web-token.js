@@ -1,7 +1,3 @@
-/**
- * Created by ray.xie on 11/22/2016.
- */
-
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import config from '../../config';
 import { models } from '../../database';

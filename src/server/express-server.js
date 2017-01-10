@@ -1,7 +1,3 @@
-/**
- * Created by ray.xie on 11/18/2016.
- */
-
 import express from 'express';
 import path from 'path';
 import exphab from 'express-handlebars';

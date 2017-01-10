@@ -1,7 +1,3 @@
-/**
- * Created by ray.xie on 11/18/2016.
- */
-
 // Error handler
 export default (err, req, rsp, next) => {
   // log the error, for now just console.log

@@ -1,7 +1,3 @@
-/**
- * Created by ray.xie on 11/23/2016.
- */
-
 import SequelizeAuto from 'sequelize-auto';
 import config from '../config';
 
