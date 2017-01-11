@@ -18,7 +18,6 @@ export default () => {
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
     app.use(cookieParser());
-    app.use(passport.initialize());
 
     // Add headers for CORS
     app.use(function (req, res, next) {
@@ -37,8 +36,14 @@ export default () => {
         res.setHeader('Access-Control-Allow-Credentials', true);
 
         // Pass to next layer of middleware
-        next();
+        if ("OPTIONS" == req.method) {
+            res.sendStatus(200);
+        } else {
+            next();
+        }
     });
+
+    app.use(passport.initialize());
 
     // Routes
     app.use('/', router);
