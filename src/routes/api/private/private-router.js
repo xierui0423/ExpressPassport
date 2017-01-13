@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.use('/', authHandler);
 router.use('/account', accountRouter);
+router.use('/player', accountRouter);
 
 export default router;

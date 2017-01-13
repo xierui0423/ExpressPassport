@@ -4,7 +4,7 @@ import jwtStratedy from './jwt';
 passport.use(jwtStratedy);
 
 passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    done(null, user);
 });
 
 passport.deserializeUser(function(obj, done) {

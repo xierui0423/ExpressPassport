@@ -51,8 +51,10 @@ userService.login = (req, res, next) => {
 
 // Private
 userService.retrieve = (req, res, next) => {
-    console.log(req.user.username);
-    User.findOne({ order: [['id', 'DESC']] }).then((user) => {
+    console.log(req.user);
+    User.findOne({
+        where: { id: req.user.dataValues.id }
+    }).then((user) => {
         res.json(user || []);
     }).catch(next);
 };
