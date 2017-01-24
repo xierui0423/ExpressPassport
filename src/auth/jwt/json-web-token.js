@@ -5,7 +5,7 @@ import { models } from '../../database';
 const User = models.user.User;
 
 const opts = {
-    jwtFromRequest: ExtractJwt.fromExtractors([req => req && req.cookies && req.cookies['JWT']]),
+    jwtFromRequest: ExtractJwt.fromExtractors([req => req && req.cookies && req.cookies.JWT]),
     secretOrKey: config.expressServer.authKey,
     passReqToCallback: true,
 };

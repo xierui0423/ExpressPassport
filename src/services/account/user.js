@@ -9,7 +9,7 @@ const User = models.user.User;
 
 const userService = {};
 
-//Public
+// Public
 userService.register = (req, res, next) => {
     const user = req.body;
     const salt = uuid.v4();
@@ -40,7 +40,7 @@ userService.login = (req, res, next) => {
             // Store the token in cookie
             res.cookie('JWT', jwt.sign({ userId: loginUser.id }, config.expressServer.authKey), {
                 maxAge: 3600000,
-                httpOnly: true
+                httpOnly: true,
             }).status(200).json({ message: 'Ok' });
         } else {
             res.status(401).json({ message: 'Unauthorized' });
@@ -51,17 +51,16 @@ userService.login = (req, res, next) => {
 
 // Private
 userService.retrieve = (req, res, next) => {
-    console.log(req.user);
     User.findOne({
-        where: { id: req.user.dataValues.id }
+        where: { id: req.user.dataValues.id },
     }).then((user) => {
-        res.json(user || []);
+        res.json({ payload: user || {} });
     }).catch(next);
 };
 
 userService.logout = (req, res) => {
     // Store the token in cookie
     res.cookie('JWT', '').status(200).json({ message: 'Ok' });
-}
+};
 
 export default userService;

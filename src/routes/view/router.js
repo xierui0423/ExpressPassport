@@ -1,5 +1,5 @@
 import express from 'express';
-import rp from 'request-promise';
+// import rp from 'request-promise';
 import jwt from 'jsonwebtoken';
 import { authHandler } from '../../auth';
 
@@ -31,7 +31,6 @@ router.get('/test', (req, rsp) => {
     setTimeout(() => {
         rsp.json({ id: 1 });
     }, 0);
-
 });
 
 export default router;
