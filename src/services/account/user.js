@@ -41,7 +41,7 @@ userService.login = (req, res, next) => {
             res.cookie('JWT', jwt.sign({ userId: loginUser.id }, config.expressServer.authKey), {
                 maxAge: 3600000,
                 httpOnly: true,
-            }).status(200).json({ message: 'Ok' });
+            }).status(200).json({ message: 'Ok', payload: loginUser });
         } else {
             res.status(401).json({ message: 'Unauthorized' });
         }

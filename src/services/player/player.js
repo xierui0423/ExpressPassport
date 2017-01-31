@@ -48,7 +48,7 @@ playerService.create = (req, res, next) => {
 
                 if (validatePlayerData(playerData)) {
                     Player.create(playerData).then(() => {
-                        res.json({ message: `User ${player.name} has been created!` });
+                        res.json({ message: `User ${player.name} has been created!`, payload: playerData });
                     }).catch(next);
                 } else {
                     res.status(500).json({ message: 'Invalid data detected!' });

@@ -12,5 +12,4 @@ export const models = {
         Player: db.import('./models/Player'),
     },
 
-
 };
