@@ -23,7 +23,7 @@ const validatePlayerData = () => {
 playerService.create = (req, res, next) => {
     const player = req.body.player;
 
-    Player.findOne({ $or: [{ userId: req.user.dataValues.id }, { name: player.name }] })
+    Player.findOne({ where: { $or: [{ userId: req.user.dataValues.id }, { name: player.name }] } })
         .then((createdPlayer) => {
             // Don't allow duplicate username
             if (createdPlayer) {
@@ -48,7 +48,10 @@ playerService.create = (req, res, next) => {
 
                 if (validatePlayerData(playerData)) {
                     Player.create(playerData).then(() => {
-                        res.json({ message: `User ${player.name} has been created!`, payload: playerData });
+                        res.json({
+                            message: `User ${player.name} has been created!`,
+                            payload: playerData
+                        });
                     }).catch(next);
                 } else {
                     res.status(500).json({ message: 'Invalid data detected!' });
