@@ -55,7 +55,8 @@
     "pg-hstore": "^2.3.2",
     "request": "^2.78.0",
     "request-promise": "^4.1.1",
-    "sequelize": "^3.25.0"
+    "sequelize": "^3.25.0",
+    "socket.io": "^1.7.2"
   },
   "eslintConfig": {
     "env": {
@@ -78,13 +79,7 @@
         4
       ],
       "new-cap": [
-        2,
-        {
-          "capIsNewExceptions": [
-            "Map",
-            "List"
-          ]
-        }
+        0
       ],
       "linebreak-style": [
         2,
@@ -98,9 +93,6 @@
         4
       ],
       "import/prefer-default-export": [
-        0
-      ],
-      "new-cap": [
         0
       ]
     }

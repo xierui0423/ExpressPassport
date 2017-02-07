@@ -8,7 +8,7 @@ const playerService = {};
 // Private
 playerService.retrieve = (req, res, next) => {
     Player.findOne({ where: { userId: req.user.dataValues.id } }).then((player) => {
-        res.json({ payload: player || {} });
+        res.json({ payload: { playerData: player || {} } });
     }).catch(next);
 };
 
@@ -50,7 +50,7 @@ playerService.create = (req, res, next) => {
                     Player.create(playerData).then(() => {
                         res.json({
                             message: `User ${player.name} has been created!`,
-                            payload: playerData
+                            payload: { playerData },
                         });
                     }).catch(next);
                 } else {

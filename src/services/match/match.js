@@ -1,12 +1,12 @@
 const matchService = {};
 
-let id = 1;
+let id = 0;
 const matches = [];
 
 // Private
 matchService.retrieve = (req, res) => {
     const currentMatch = matches.find(match => match.userIds.includes(req.user.dataValues.id));
-    res.json({ payload: currentMatch || {} });
+    res.json({ payload: { match: currentMatch || {} } });
 };
 
 
@@ -18,13 +18,17 @@ matchService.create = (req, res) => {
             message: currentMatch.userIds.length > 1 ?
                 'Still waiting for someone to join the currently ongoing match.' :
                 'You are already in the match.',
-            payload: currentMatch });
+            payload: { match: currentMatch },
+        });
     } else {
         const waitingMatch = matches.find(match => match.userIds.length === 1);
 
         if (waitingMatch) {
             waitingMatch.userIds.push(req.user.dataValues.id);
-            res.json({ message: 'Joined a currently ongoing match.', payload: waitingMatch });
+            res.json({
+                message: 'Joined a currently ongoing match.',
+                payload: { match: waitingMatch },
+            });
         } else {
             const newMatch = {
                 id: id += 1,
@@ -33,7 +37,7 @@ matchService.create = (req, res) => {
 
             matches.push(newMatch);
 
-            res.json({ message: 'Match has been created!', payload: newMatch });
+            res.json({ message: 'Match has been created!', payload: { match: newMatch } });
         }
     }
 };

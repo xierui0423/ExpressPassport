@@ -37,11 +37,13 @@ userService.login = (req, res, next) => {
     // TODO user passport local strategy
     User.findOne({ where: { username: user.username } }).then((loginUser) => {
         if (loginUser && hash.update(loginUser.salt).update(user.password).digest('hex') === loginUser.password) {
+            const token = jwt.sign({ userId: loginUser.id }, config.expressServer.authKey);
+
             // Store the token in cookie
-            res.cookie('JWT', jwt.sign({ userId: loginUser.id }, config.expressServer.authKey), {
+            res.cookie('JWT', token, {
                 maxAge: 3600000,
                 httpOnly: true,
-            }).status(200).json({ message: 'Ok', payload: loginUser });
+            }).status(200).json({ message: 'Ok', payload: { userData: loginUser } });
         } else {
             res.status(401).json({ message: 'Unauthorized' });
         }
@@ -54,7 +56,7 @@ userService.retrieve = (req, res, next) => {
     User.findOne({
         where: { id: req.user.dataValues.id },
     }).then((user) => {
-        res.json({ payload: user || {} });
+        res.json({ payload: { userData: user || {} } });
     }).catch(next);
 };
 
