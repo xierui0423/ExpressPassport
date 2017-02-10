@@ -7,7 +7,7 @@ const playerService = {};
 
 // Private
 playerService.retrieve = (req, res, next) => {
-    Player.findOne({ where: { userId: req.user.dataValues.id } }).then((player) => {
+    Player.findOne({ where: { userId: req.user.id } }).then((player) => {
         res.json({ payload: { playerData: player || {} } });
     }).catch(next);
 };
@@ -23,7 +23,7 @@ const validatePlayerData = () => {
 playerService.create = (req, res, next) => {
     const player = req.body.player;
 
-    Player.findOne({ where: { $or: [{ userId: req.user.dataValues.id }, { name: player.name }] } })
+    Player.findOne({ where: { $or: [{ userId: req.user.id }, { name: player.name }] } })
         .then((createdPlayer) => {
             // Don't allow duplicate username
             if (createdPlayer) {
@@ -33,7 +33,7 @@ playerService.create = (req, res, next) => {
                     name: player.name,
                     height: player.height,
                     weight: player.weight,
-                    userId: req.user.dataValues.id,
+                    userId: req.user.id,
                     speed: player.speed,
                     agility: player.agility,
                     strength: player.strength,

@@ -14,6 +14,11 @@ const config =
             port: 3000,
         },
 
+        redisServer: {
+            host: '139.196.111.27',
+            port: 6379,
+        },
+
     };
 
 
