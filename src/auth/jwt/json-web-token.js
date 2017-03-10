@@ -24,9 +24,4 @@ export default new JwtStrategy(opts, (req, payload, done) => {
             }).catch(done);
         }
     });
-    //
-    // // TODO Get user info from in memory cache (redis?)
-    // User.findOne({ where: { id: payload.userId } }).then((loginUser) => {
-    //     done(null, loginUser);
-    // }).catch(done);
 });
