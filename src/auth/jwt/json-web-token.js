@@ -20,13 +20,13 @@ const opts = {
 // opts.audience = 'yoursite.net';
 
 export default new JwtStrategy(opts, (req, payload, done) => {
-  redisClient.hgetall(payload.userId, (err, userFromCache) => {
+  redisClient.hgetall(`USER_ID_${payload.userId}`, (err, userFromCache) => {
     if (userFromCache) {
       done(null, userFromCache);
     } else {
       User.findOne({ where: { id: payload.userId } }).then((userFromDb) => {
         if (userFromDb) {
-          redisClient.hmset(payload.userId, userFromDb.dataValues);
+          redisClient.hmset(`USER_ID_${payload.userId}`, userFromDb.dataValues);
           done(null, userFromDb.dataValues);
         } else {
           done(null, { id: 0 });
