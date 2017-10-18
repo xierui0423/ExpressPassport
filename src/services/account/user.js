@@ -52,6 +52,10 @@ userService.login = (req, res, next) => {
 
 // Private
 userService.retrieve = (req, res, next) => {
+  if (req.user.id === 0) {
+    res.json({ payload: { userData: {} } });
+    return;
+  }
   User.findOne({
     where: { id: req.user.id },
   }).then((user) => {
