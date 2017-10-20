@@ -4,12 +4,14 @@ export default db;
 
 export const models = {
 
-    user: {
-        User: db.import('./models/User'),
-    },
+  user: {
+    User: db.import('./models/User'),
+  },
 
-    player: {
-        Player: db.import('./models/Player'),
-    },
+  market: {
+    League: db.import('./models/League'),
+    Team: db.import('./models/Team'),
+    Player: db.import('./models/Player'),
+  },
 
 };

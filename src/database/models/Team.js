@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('player', {
+	return sequelize.define('team', {
 		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
@@ -10,25 +10,20 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		name: {
 			type: DataTypes.STRING,
-			allowNull: true,
+			allowNull: false,
 			field: 'name'
 		},
-		position: {
+		leagueId: {
 			type: DataTypes.INTEGER,
-			allowNull: true,
-			field: 'position'
-		},
-		teamId: {
-			type: DataTypes.INTEGER,
-			allowNull: true,
+			allowNull: false,
 			references: {
-				model: 'Team',
+				model: 'League',
 				key: 'id'
 			},
-			field: 'teamId'
+			field: 'leagueId'
 		}
 	}, {
-		tableName: 'Player',
+		tableName: 'Team',
 		timestamps: false
 	});
 };
