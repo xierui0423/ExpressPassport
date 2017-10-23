@@ -14,4 +14,8 @@ export const models = {
     Player: db.import('./models/Player'),
   },
 
+  club: {
+    Club: db.import('./models/Club'),
+  },
+
 };
