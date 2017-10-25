@@ -1,21 +1,8 @@
 import db from './database';
+import md from './models';
+
+md.init(db);
 
 export default db;
 
-export const models = {
-
-  user: {
-    User: db.import('./models/User'),
-  },
-
-  market: {
-    League: db.import('./models/League'),
-    Team: db.import('./models/Team'),
-    Player: db.import('./models/Player'),
-  },
-
-  club: {
-    Club: db.import('./models/Club'),
-  },
-
-};
+export const models = md;

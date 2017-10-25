@@ -5,7 +5,7 @@ import config from '../../config';
 
 import { models } from '../../database';
 
-const User = models.user.User;
+const User = models.User;
 
 const userService = {};
 

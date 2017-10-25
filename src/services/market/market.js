@@ -1,11 +1,10 @@
 import { models } from '../../database';
 
-const League = models.market.League;
-const Team = models.market.Team;
-const Player = models.market.Player;
+const League = models.League;
+const Team = models.Team;
+const Player = models.Player;
 
 const marketService = {};
-
 
 // Private
 marketService.retrieve = (req, res, next) => {

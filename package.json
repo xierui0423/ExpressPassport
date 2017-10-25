@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node ./src/app.js --source-maps",
-    "generate-model": "babel-node ./src/scripts/generate-database-models",
+    "generate-model": "pgen exec src/database/sequelize-template -d postgres -u postgres -p inter1908 -t src/database/models -h 139.196.111.27  --port 5432",
     "clean": "rm -rf build && mkdir build",
     "build-server": "babel -d ./build ./src -s",
     "build": "npm run clean && npm run build-server",

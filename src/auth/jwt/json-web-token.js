@@ -5,7 +5,7 @@ import config from '../../config';
 import { models } from '../../database';
 import redisClient from '../../redis';
 
-const User = models.user.User;
+const User = models.User;
 
 const opts = {
   // set usedId 0 for guest

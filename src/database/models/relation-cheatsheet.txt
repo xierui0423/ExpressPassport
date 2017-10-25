@@ -1,0 +1,26 @@
+
+
+Club
+----
+belongs to        User                                     as User 
+
+
+League
+------
+has many          Team                                     as TeamLeagueidFkeys 
+
+
+Player
+------
+belongs to        Team                                     as Team 
+
+
+Team
+----
+has many          Player                                   as PlayerTeamidFkeys 
+belongs to        League                                   as League 
+
+
+User
+----
+has many          Club                                     as ClubUseridFkeys 
