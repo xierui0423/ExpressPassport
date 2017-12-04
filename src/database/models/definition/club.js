@@ -29,6 +29,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             field: 'balance',
             allowNull: true
+        },
+        tactic: {
+            type: DataTypes.JSON,
+            field: 'tactic',
+            allowNull: true
         }
     }, {
         schema: 'public',
